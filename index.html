@@ -1,9 +1,9 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml">
+<!DOCTYPE html>
+<html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <meta name="keywords" content="QREncoder,二维码,二维条形码,QR,Quick Response,生成" />
-<meta name="description" content="本应用可以将文本、网址、电话、短信、邮件甚至名片等信息快速转换为二维条形码。二维条形码，简称二维码，英文缩写QR（Quick Response）。它可以存储数字、文本或者URL地址等信息。二维条形码解码需要专用的解码器，通常带有摄像头的手机都带有能够读取二维条形码的应用。" />
+<meta name="description" content="QREncoder可以将文本、网址、电话、短信、邮件甚至名片等信息快速转换为二维条形码。二维条形码，简称二维码或QR（Quick Response）码，英文翻译为：Dimensional Bar Code。它可以存储数字、文本或者URL地址等信息。二维条形码解码需要专用的解码器，通常带有摄像头的手机都带有能够读取二维条形码的应用，如果您不明白某些参数的具体含义，请保持默认。" />
 <meta name="author" content="kandisheng" />
 <title>二维码生成器 - QREncoder</title>
 <!--<link href="style/bootstrap/css/bootstrap.min.css" rel="stylesheet" type="text/css" />-->
@@ -63,7 +63,7 @@
 </div>
 
 <div class="span8">
-<div class="tabbable"> <!-- Only required for left/right tabs -->
+<div class="tabbable">
 <ul class="nav nav-tabs">
 <li class="active"><a href="#text" data-toggle="tab" onclick="do=0">文本</a></li>
 <li><a href="#url" data-toggle="tab">网址</a></li>
@@ -156,7 +156,7 @@ function shengcheng(neirong)
 	else
 	{
 		image="https://chart.googleapis.com/chart?cht=qr&chs="+imagewidth+"x"+imageheight+"&choe="+imagebm+"&chld="+imagerc+"|"+imagemargin+"&chl="+neirong;
-		var img = new Image(); //创建一个Image对象，实现图片的预下载
+		var img = new Image();
 		img.src = image;
 		img.onload = function()
 		{
@@ -173,9 +173,8 @@ function shengcheng(neirong)
 			document.all.noticeerror.style.display="block";
 			document.all.showqr.innerHTML="";
 		};
-		
 		document.all.showqr.innerHTML="<img title='您生成的二维码' alt='图片加载失败，请重新生成' src='"+image+"' />";
-		//document.all.notice.innerHTML=image;
+		//document.all.notice.innerHTML=image;//用于测试结果
 	}
 	this.location = "#result";
 }
