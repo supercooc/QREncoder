@@ -6,9 +6,12 @@
 <meta name="description" content="QREncoder可以将文本、网址、电话、短信、邮件甚至名片等信息快速转换为二维条形码。二维条形码，简称二维码或QR（Quick Response）码，英文翻译为：Dimensional Bar Code。它可以存储数字、文本或者URL地址等信息。二维条形码解码需要专用的解码器，通常带有摄像头的手机都带有能够读取二维条形码的应用，如果您不明白某些参数的具体含义，请保持默认。" />
 <meta name="author" content="kandisheng" />
 <title>二维码生成器 - QREncoder</title>
-<!--<link href="style/bootstrap/css/bootstrap.min.css" rel="stylesheet" type="text/css" />-->
+<link rel="shortcut icon" type="image/vnd.microsoft.icon" href="favicon.png">
+<!--
+<link href="style/bootstrap/css/bootstrap.min.css" rel="stylesheet" type="text/css" />
+<script language="javascript" type="text/javascript" src="script/jquery-1.7.1.min.js"></script>
+-->
 <link href="http://lib.sinaapp.com/js/bootstrap/latest/css/bootstrap.min.css" rel="stylesheet" type="text/css" />
-<!--<script language="javascript" type="text/javascript" src="script/jquery-1.7.1.min.js"></script>-->
 <script language="javascript" type="text/javascript" src="http://lib.sinaapp.com/js/jquery/1.7.2/jquery.min.js"></script>
 <script language="javascript" type="text/javascript" src="script/bootstrap-tab.js"></script>
 <script language="javascript" type="text/javascript" src="script/bootstrap-alert.js"></script>
@@ -36,24 +39,24 @@
 <div class="alert alert-success">
 <a class="close" data-dismiss="alert" href="#" title="关闭">×</a>
 <h4 class="alert-heading">QREncoder</h4>
-<div style="text-indent:2em; margin-top:10px;">二维条形码，简称二维码或QR（Quick Response）码，英文翻译为：Dimensional Bar Code。它可以存储数字、文本或者URL地址等信息。二维条形码解码需要专用的解码器，通常带有摄像头的手机都带有能够读取二维条形码的应用，QREncoder可以将文本、网址、电话、短信、邮件甚至名片等信息快速转换为二维条形码。如果您不明白某些参数的具体含义，请保持默认。</div>
+<div style="text-indent:2em; margin-top:10px;"><p>二维条形码，简称二维码或QR（Quick Response）码，英文翻译为：Dimensional Bar Code。它可以存储数字、文本或者URL地址等信息。二维条形码解码需要专用的解码器，通常带有摄像头的手机都带有能够读取二维条形码的应用，QREncoder可以将文本、网址、电话、短信、邮件甚至名片等信息快速转换为二维条形码。如果您不明白某些参数的具体含义，请保持默认。</p><p>QREncoder不支持IE7及一下版本的浏览器，请及时<a href="http://chrome.google.com" target="_blank" title="升级您的浏览器">升级您的浏览器</a>。</p></div>
 </div>
 
 <div class="row">
-<div class="span4">
+<div class="span3">
 <form id="thisform" name="thisform" method="post" action="" class="well">
 <div class="alert alert-info" style="padding:10px; text-align:center; margin-bottom:10px;"><h4>全局设置</h4></div>
-<label for="imageheight">图片长度（单位：像素）：</label><input name="imageheight" type="text" id="imageheight" value="547" size="5" maxlength="3" />
-<label for="imagewidth">图片宽度（单位：像素）：</label><input name="imagewidth" type="text" id="imagewidth" value="547" size="5" maxlength="3" />
-<label for="imagemargin">图片边距（单位：像素）：</label><input name="imagemargin" type="text" id="imagemargin" value="4" size="5" maxlength="3" />
+<label for="imagewidth">图片宽度（单位：像素）：</label><input style="width:170px;" name="imagewidth" type="text" id="imagewidth" value="547" size="5" maxlength="3" />
+<label for="imageheight">图片高度（单位：像素）：</label><input style="width:170px;" name="imageheight" type="text" id="imageheight" value="547" size="5" maxlength="3" />
+<label for="imagemargin">图片边距（单位：像素）：</label><input style="width:170px;" name="imagemargin" type="text" id="imagemargin" value="4" size="5" maxlength="3" />
 <label for="imagebm">编码模式：</label>
-<select name="imagebm" id="imagebm">
+<select name="imagebm" id="imagebm" style="width:180px;">
 <option value="UTF-8" selected="selected">UTF-8</option>
 <option value="Shift_JIS">Shift_JIS</option>
 <option value="ISO-8859-1">ISO-8859-1</option>
 </select>
 <label for="imagerc">容错等级：</label>
-<select name="imagerc" id="imagerc">
+<select name="imagerc" id="imagerc" style="width:180px;">
 <option value="L">L（7%）</option>
 <option value="M">M（15%）</option>
 <option value="Q">Q（25%）</option>
@@ -62,8 +65,8 @@
 </form>
 </div>
 
-<div class="span8">
-<div class="tabbable">
+<div class="span5">
+<div class="tabbable" style="height:340px;">
 <ul class="nav nav-tabs">
 <li class="active"><a href="#text" data-toggle="tab" onclick="do=0">文本</a></li>
 <li><a href="#url" data-toggle="tab">网址</a></li>
@@ -117,73 +120,86 @@
 </div>
 </div>
 </div>
+
+<div class="span4">
+<div id="noticefirst" class="alert alert-info">请点击"立即生成二维码"生成您的二维码。</div>
+<div id="noticeerror" class="alert alert-error" style="display:none;">请点击"立即生成二维码"生成您的二维码。</div>
+<div id="notice" class="alert alert-success" style="display:none;">请点击"立即生成二维码"生成您的二维码。</div>
+<div id="showqr" style="text-align:center;"><img src="https://chart.googleapis.com/chart?cht=qr&chs=547x547&choe=UTF-8&chld=L|4&chl=http://qrencoder.sinaapp.com" title="http://qrencoder.sinaapp.com" /></div>
 </div>
 
-<div id="result"></div>
-
-<div class="row"><div class="span12"><div id="noticefirst" class="alert alert-info" style="padding:15px;">请点击"立即生成二维码"生成您的二维码文件。</div></div></div>
-<div class="row"><div class="span12"><div id="noticeerror" class="alert alert-error" style="padding:15px;display:none;">请点击"立即生成二维码"生成您的二维码文件。</div></div></div>
-<div class="row"><div class="span12"><div id="notice" class="alert alert-success" style="padding:15px;display:none;">请点击"立即生成二维码"生成您的二维码文件。</div></div></div>
-<div class="row"><div class="span12"><div id="showqr" style="text-align:center;"></div></div></div>
-
 </div>
+
+<div class="row">
+<div class="span12">
+<div class="alert alert-info" style="text-align:center">
+CopyRight &copy; <script language="JavaScript" type="text/javascript">document.write(new Date().getFullYear());</script> QREncoder All Rights Reserved.
+</div>
+</div>
+</div>
+
 <script language="javascript" type="text/javascript">
 function tzcc()
 {
-	document.getElementById('imageheight').focus();
-	document.getElementById('imageheight').select();
+	this.location="#top";
+	window.location.href="#top";
+	document.getElementById('imagewidth').focus();
+	document.getElementById('imagewidth').select();
+}
+function hideall()
+{
+	document.getElementById('noticefirst').style.display="none";
+	document.getElementById('notice').style.display="none";
+	document.getElementById('noticeerror').style.display="none";
+	document.getElementById('showqr').style.display="none";
 }
 function shengcheng(neirong)
 {
 	document.getElementById('showqr').style.display="none";
 	document.getElementById('notice').style.display="none";
 	document.getElementById('noticeerror').style.display="none";
-	document.getElementById('noticefirst').innerHTML="<div>正在生成二维码，请稍后……</div><div class='progress progress-striped active'><div class='bar' style='width: 100%;'></div></div>";
+	document.getElementById('noticefirst').innerHTML="<div class='progress progress-striped active'><div class='bar' style='width: 100%;'></div></div><div>正在生成二维码，请稍后……</div>";
 	document.getElementById('noticefirst').style.display="block";
 	imagewidth=document.getElementById('imagewidth').value;
 	imageheight=document.getElementById('imageheight').value;
 	imagebm=document.getElementById('imagebm').value;
 	imagerc=document.getElementById('imagerc').value;
 	imagemargin=document.getElementById('imagemargin').value;
+	if(imagemargin=="")
+	{
+		imagemargin="4";
+	}
 	if(imagewidth*imageheight>=300000)
 	{
-		document.getElementById('noticefirst').style.display="none";
-		document.getElementById('notice').style.display="none";
-		document.getElementById('noticeerror').innerHTML="尺寸太大，请重新输入尺寸！<a class='btn' onclick='tzcc()' href='#top' title='重新输入尺寸'>重新输入尺寸</a>";
+		hideall();
+		document.getElementById('noticeerror').innerHTML="尺寸太大！请&nbsp;<a class='btn' onclick='tzcc()' href='#top' title='重新输入尺寸'>重新输入尺寸</a>";
 		document.getElementById('noticeerror').style.display="block";
-		document.getElementById('showqr').innerHTML="";
 		tzcc();
 	}
 	else
 	{
 		image="https://chart.googleapis.com/chart?cht=qr&chs="+imagewidth+"x"+imageheight+"&choe="+imagebm+"&chld="+imagerc+"|"+imagemargin+"&chl="+neirong;
+		document.getElementById('showqr').innerHTML="<img title='您生成的二维码' alt='图片加载失败，请重新生成' src='"+image+"' />";
 		var img = new Image();
 		img.src = image;
 		img.onload = function()
 		{
+			hideall();
 			document.getElementById('showqr').style.display="block";
-			document.getElementById('noticefirst').style.display="none";
-			document.getElementById('noticeerror').style.display="none";
-			document.getElementById('notice').innerHTML="二维码生成成功！&nbsp;<a class='btn' href='"+image+"' target='_blank' title='立即下载'>立即下载</a>&nbsp;<a class='btn' href='#top' title='重新生成'>重新生成</a>";
+			document.getElementById('notice').innerHTML="二维码生成成功！&nbsp;<a class='btn' href='"+image+"' target='_blank' title='立即下载'>立即下载</a>";
 			document.getElementById('notice').style.display="block"; 
 		};
 		img.onerror = function()
 		{
-			document.getElementById('noticefirst').style.display="none";
-			document.getElementById('notice').style.display="none";
-			document.getElementById('noticeerror').innerHTML="图片加载错误，可能是您输入的内容太多或者网速太慢，请&nbsp;<a class='btn' href='#top' title='重新生成'>重新生成</a>";
+			hideall();
+			document.getElementById('noticeerror').innerHTML="图片加载错误，可能是您输入的内容太多或者网速太慢，请重新生成。";
 			document.getElementById('noticeerror').style.display="block";
-			document.getElementById('showqr').innerHTML="";
 		};
-		document.getElementById('showqr').innerHTML="<img title='您生成的二维码' alt='图片加载失败，请重新生成' src='"+image+"' />";
-		//document.getElementById('notice').innerHTML=image;//用于测试结果
 	}
-	this.location = "#result";
 }
 function shengchengtext()
 {
 	neirong=document.getElementById('qrtext').value;
-	shengcheng(neirong);
 	shengcheng(neirong);
 }
 function shengchengurl()
@@ -194,12 +210,10 @@ function shengchengurl()
 		neirong="http://"+neirong;
 	}
 	shengcheng(neirong);
-	shengcheng(neirong);
 }
 function shengchengtel()
 {
 	neirong="tel:"+document.getElementById('qrtel').value;
-	shengcheng(neirong);
 	shengcheng(neirong);
 }
 function shengchengsms()
@@ -207,12 +221,10 @@ function shengchengsms()
 	neirong="sms:"+document.getElementById('qrsms').value;
 	neirong+=":"+document.getElementById('qrsmsnr').value
 	shengcheng(neirong);
-	shengcheng(neirong);
 }
 function shengchengemail()
 {
 	neirong="mailto:"+document.getElementById('qremail').value;
-	shengcheng(neirong);
 	shengcheng(neirong);
 }
 function shengchengcard()
@@ -224,10 +236,15 @@ function shengchengcard()
 	neirong+="NOTE:"+document.getElementById('qrcardnote').value+";";
 	neirong+=";";
 	shengcheng(neirong);
-	shengcheng(neirong);
 }
 </script>
-<div style="display:none;"><script type="text/javascript" src="http://tajs.qq.com/stats?sId=9680758" charset="UTF-8"></script></div>
+<div style="display:none;">
+<script type="text/javascript" src="http://tajs.qq.com/stats?sId=9680758" charset="UTF-8"></script>
+<script type="text/javascript">
+var _bdhmProtocol = (("https:" == document.location.protocol) ? " https://" : " http://");
+document.write(unescape("%3Cscript src='" + _bdhmProtocol + "hm.baidu.com/h.js%3F2203db71b13fb4976de00624b8d6b09c' type='text/javascript'%3E%3C/script%3E"));
+</script>
+</div>
 </body>
 </html>
 <!--By Candison November(http://www.kandisheng.com)-->
