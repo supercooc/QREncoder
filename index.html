@@ -6,15 +6,20 @@
 <meta name="description" content="QREncoder可以将文本、网址、电话、短信、邮件甚至名片等信息快速转换为二维条形码。二维条形码，简称二维码或QR（Quick Response）码，英文翻译为：Dimensional Bar Code。它可以存储数字、文本或者URL地址等信息。二维条形码解码需要专用的解码器，通常带有摄像头的手机都带有能够读取二维条形码的应用，如果您不明白某些参数的具体含义，请保持默认。" />
 <meta name="author" content="kandisheng" />
 <title>二维码生成器 - QREncoder</title>
-<link rel="shortcut icon" type="image/vnd.microsoft.icon" href="favicon.png">
 <!--
+<link rel="shortcut icon" type="image/vnd.microsoft.icon" href="favicon.png">
 <link href="style/bootstrap/css/bootstrap.min.css" rel="stylesheet" type="text/css" />
 <script language="javascript" type="text/javascript" src="script/jquery-1.7.1.min.js"></script>
--->
-<link href="http://lib.sinaapp.com/js/bootstrap/latest/css/bootstrap.min.css" rel="stylesheet" type="text/css" />
-<script language="javascript" type="text/javascript" src="http://lib.sinaapp.com/js/jquery/1.7.2/jquery.min.js"></script>
 <script language="javascript" type="text/javascript" src="script/bootstrap-tab.js"></script>
 <script language="javascript" type="text/javascript" src="script/bootstrap-alert.js"></script>
+-->
+<!---->
+<link rel="shortcut icon" type="image/vnd.microsoft.icon" href="http://qrencoder.sinaapp.com/favicon.png">
+<link href="http://lib.sinaapp.com/js/bootstrap/latest/css/bootstrap.min.css" rel="stylesheet" type="text/css" />
+<script language="javascript" type="text/javascript" src="http://lib.sinaapp.com/js/jquery/1.7.2/jquery.min.js"></script>
+<script language="javascript" type="text/javascript" src="http://qrencoder.sinaapp.com/script/bootstrap-tab.js"></script>
+<script language="javascript" type="text/javascript" src="http://qrencoder.sinaapp.com/script/bootstrap-alert.js"></script>
+<!---->
 <script language="javascript" type="text/javascript">
 url="http://qrencoder.sinaapp.com";
 url1="http://qrencoder.sinaapp.com/";
@@ -29,6 +34,18 @@ function tzcc()
 	window.location.href="#top";
 	document.getElementById('imagewidth').focus();
 	document.getElementById('imagewidth').select();
+}
+function checkurl(url)
+{
+	if(!(url.substring(0,7)=="http://" || url.substring(0,8)=="https://"))
+	{
+		neirong="http://"+url;
+	}
+	else
+	{
+		neirong=url;
+	}
+	return neirong;
 }
 function hideall()
 {
@@ -89,10 +106,7 @@ function shengchengtext()
 function shengchengurl()
 {
 	neirong=document.getElementById('qrurl').value;
-	if(!(neirong.substring(0,7)=="http://" || neirong.substring(0,8)=="https://"))
-	{
-		neirong="http://"+neirong;
-	}
+	neirong=checkurl(neirong);
 	shengcheng(neirong);
 }
 function shengchengtel()
@@ -113,11 +127,16 @@ function shengchengemail()
 }
 function shengchengcard()
 {
+	url=checkurl(document.getElementById('qrcardurl').value);
 	neirong="MECARD:N:"+document.getElementById('qrcardname').value+";";
 	neirong+="ADR:"+document.getElementById('qrcardadd').value+";";
 	neirong+="TEL:"+document.getElementById('qrcardtel').value+";";
 	neirong+="EMAIL:"+document.getElementById('qrcardmail').value+";";
+	neirong+="URL:"+url+";";
 	neirong+="NOTE:"+document.getElementById('qrcardnote').value+";";
+	//neirong+="TIL:"+"til"+";";//职位
+	//neirong+="DIV:"+"div"+";";//部门
+	//neirong+="COR:"+"COR"+";";//公司
 	neirong+=";";
 	shengcheng(neirong);
 }
@@ -136,9 +155,9 @@ function shengchengcard()
 <li><a href="https://github.com/KanDisheng/QREncoder" target="_blank" title="源代码">源代码</a></li>
 <li><a href="http://www.kandisheng.com" target="_blank" title="关于">关于</a></li>
 <li style="margin-left:20px;">
-<form action="http://kandisheng.sinaapp.com/google/" method="get" name="formsearch" target="_blank" class="navbar-search pull-left">
-<input type="text" name="s" id="s" class="search-query" placeholder="搜索">
-<input class="search-query" type="submit" value="搜索">
+<form action="http://www.googlecn.org/" method="get" name="formsearch" target="_blank" class="navbar-search pull-left">
+<input type="text" name="s" id="s" class="search-query" placeholder="搜索" title="搜索">
+<input class="search-query" type="submit" value="搜索" title="搜索">
 </form>
 </li>
 <li style="margin-top:10px; margin-left:20px;">
@@ -170,17 +189,17 @@ function shengchengcard()
 <div class="span3">
 <form id="thisform" name="thisform" method="post" action="" class="well">
 <div class="alert alert-info" style="padding:10px; text-align:center; margin-bottom:10px;"><h4>全局设置</h4></div>
-<label for="imagewidth">图片宽度（单位：像素）：</label><input style="width:170px;" name="imagewidth" type="text" id="imagewidth" value="547" size="5" maxlength="3" />
-<label for="imageheight">图片高度（单位：像素）：</label><input style="width:170px;" name="imageheight" type="text" id="imageheight" value="547" size="5" maxlength="3" />
-<label for="imagemargin">图片边距（单位：像素）：</label><input style="width:170px;" name="imagemargin" type="text" id="imagemargin" value="0" size="5" maxlength="3" />
+<label for="imagewidth">图片宽度（单位：像素）：</label><input title="图片宽度（单位：像素）" style="width:170px;" name="imagewidth" type="text" id="imagewidth" value="547" size="5" maxlength="3" />
+<label for="imageheight">图片高度（单位：像素）：</label><input title="图片高度（单位：像素）" style="width:170px;" name="imageheight" type="text" id="imageheight" value="547" size="5" maxlength="3" />
+<label for="imagemargin">图片边距（单位：像素）：</label><input title="图片边距（单位：像素）" style="width:170px;" name="imagemargin" type="text" id="imagemargin" value="0" size="5" maxlength="3" />
 <label for="imagebm">编码模式：</label>
-<select name="imagebm" id="imagebm" style="width:180px;">
+<select name="imagebm" id="imagebm" style="width:180px;" title="编码模式">
 <option value="UTF-8" selected="selected">UTF-8</option>
 <option value="Shift_JIS">Shift_JIS</option>
 <option value="ISO-8859-1">ISO-8859-1</option>
 </select>
 <label for="imagerc">容错等级：</label>
-<select name="imagerc" id="imagerc" style="width:180px;">
+<select name="imagerc" id="imagerc" style="width:180px;" title="容错等级">
 <option value="L">L（7%）</option>
 <option value="M">M（15%）</option>
 <option value="Q">Q（25%）</option>
@@ -202,42 +221,43 @@ function shengchengcard()
 <div class="tab-content">
 <div class="tab-pane active" id="text">
 <form>
-<p><textarea style="width:370px;" id="qrtext" name="qrtext" cols="" rows="14" class="span3" placeholder="请输入文本内容"></textarea></p>
+<p><textarea style="width:370px;" id="qrtext" name="qrtext" cols="" rows="14" class="span3" placeholder="请输入文本内容" title="请输入文本内容"></textarea></p>
 <p><input type="button" name="tj" id="tj" value="立即生成二维码" onclick="shengchengtext()" class="btn btn-primary btn-large"  title="立即生成二维码" /></p>
 </form>
 </div>
 <div class="tab-pane" id="url">
 <form>
-<p>网址：<input name="qrurl" type="text" id="qrurl" value="" class="span3" placeholder="请输入网址"/></p>
+<p>网址：<input style="width:331px;" name="qrurl" type="text" id="qrurl" value="" class="span3" placeholder="请输入网址" title="请输入网址" /></p>
 <p><input type="button" name="tj1" id="tj1" value="立即生成二维码" onclick="shengchengurl()" class="btn btn-primary btn-large"  title="立即生成二维码" /></p>
 </form>
 </div>
 <div class="tab-pane" id="tel">
 <form>
-<p>电话号码：<input name="qrtel" type="text" id="qrtel" value="" class="span3" placeholder="请输入电话号码"/></p>
+<p>电话号码：<input style="width:305px;" name="qrtel" type="text" id="qrtel" value="" class="span3" placeholder="请输入电话号码" title="请输入电话号码" /></p>
 <p><input type="button" name="tj4" id="tj4" value="立即生成二维码" onclick="shengchengtel()" class="btn btn-primary btn-large"  title="立即生成二维码" /></p>
 </form>
 </div>
 <div class="tab-pane" id="sms">
 <form>
-<p>手机号码：<input name="qrsms" type="text" id="qrsms" value="" class="span3" placeholder="请输入手机号码"/></p>
-<p>短信内容：<input name="qrsmsnr" type="text" id="qrsmsnr" value="" class="span3" placeholder="请输入短信内容"/></p>
+<p>手机号码：<input style="width:305px;" name="qrsms" type="text" id="qrsms" value="" class="span3" placeholder="请输入手机号码" title="请输入手机号码" /></p>
+<p>短信内容：<input style="width:305px;" name="qrsmsnr" type="text" id="qrsmsnr" value="" class="span3" placeholder="请输入短信内容" title="请输入短信内容" /></p>
 <p><input type="button" name="tj5" id="tj5" value="立即生成二维码" onclick="shengchengsms()" class="btn btn-primary btn-large"  title="立即生成二维码" /></p>
 </form>
 </div>
 <div class="tab-pane" id="email">
 <form>
-<p>邮箱地址：<input name="qremail" type="text" id="qremail" value="" class="span3" placeholder="请输入邮箱地址"/></p>
+<p>邮箱地址：<input style="width:305px;" name="qremail" type="text" id="qremail" value="" class="span3" placeholder="请输入邮箱地址" title="请输入邮箱地址" /></p>
 <p><input type="button" name="tj2" id="tj2" value="立即生成二维码" onclick="shengchengemail()" class="btn btn-primary btn-large"  title="立即生成二维码" /></p>
 </form>
 </div>
 <div class="tab-pane" id="card">
 <form>
-<p>姓名：<input name="qrcardname" type="text" id="qrcardname" value="" class="span3" placeholder="请输入姓名"/></p>
-<p>电话：<input name="qrcardtel" type="text" id="qrcardtel" value="" class="span3" placeholder="请输入电话"/></p>
-<p>邮箱：<input name="qrcardmail" type="text" id="qrcardmail" value="" class="span3" placeholder="请输入邮箱"/></p>
-<p>地址：<input name="qrcardadd" type="text" id="qrcardadd" value="" class="span3" placeholder="请输入地址"/></p>
-<p>备注：<input name="qrcardnote" type="text" id="qrcardnote" value="" class="span3" placeholder="请输入备注"/></p>
+<p>姓名：<input style="width:331px;" name="qrcardname" type="text" id="qrcardname" value="" class="span3" placeholder="请输入姓名" title="请输入姓名" /></p>
+<p>电话：<input style="width:331px;" name="qrcardtel" type="text" id="qrcardtel" value="" class="span3" placeholder="请输入电话" title="请输入电话" /></p>
+<p>邮箱：<input style="width:331px;" name="qrcardmail" type="text" id="qrcardmail" value="" class="span3" placeholder="请输入邮箱" title="请输入邮箱" /></p>
+<p>网站：<input style="width:331px;" name="qrcardurl" type="text" id="qrcardurl" value="" class="span3" placeholder="请输入网址" title="请输入网址" /></p>
+<p>地址：<input style="width:331px;" name="qrcardadd" type="text" id="qrcardadd" value="" class="span3" placeholder="请输入地址" title="请输入地址" /></p>
+<p>备注：<input style="width:331px;" name="qrcardnote" type="text" id="qrcardnote" value="" class="span3" placeholder="请输入备注" title="请输入备注" /></p>
 <p><input type="button" name="tj12" id="tj12" value="立即生成二维码" onclick="shengchengcard()" class="btn btn-primary btn-large"  title="立即生成二维码" /></p>
 </form>
 </div>
