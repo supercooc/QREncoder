@@ -28,6 +28,20 @@ if(location.href!=url && location.href!=url1)
 	this.location = url;
 	window.location.href= url;
 }
+function share(title,content,url,img)
+{
+	str="";
+	str+="<div class='btn-group'>";
+	str+="<a title='分享到新浪微博' class='btn btn-success' target='_blank' href='http://v.t.sina.com.cn/share/share.php?pic="+img+"&title="+title+"&url="+url+"&rcontent="+content+"'>分享到</a>";
+	str+="<a title='分享到新浪微博' class='btn btn-danger' target='_blank' href='http://v.t.sina.com.cn/share/share.php?pic="+img+"&title="+title+"&url="+url+"&rcontent="+content+"'>新浪微博</a>";
+	str+="<a title='分享到腾讯微博' class='btn btn-primary' target='_blank' href='http://v.t.qq.com/share/share.php?title="+title+"&pic="+img+"&url="+url+"'>腾讯微博</a>";
+	str+="<a title='分享到QQ空间和朋友网' class='btn btn-warning' target='_blank' href='http://sns.qzone.qq.com/cgi-bin/qzshare/cgi_qzshare_onekey?title="+title+"&pics="+img+"&url="+url+"'>QQ</a>";
+	//str+="<a class='btn' target='_blank' href='http://share.renren.com/share/buttonshare.do?title="+title+"&link="+url+"&rcontent="+content+"'>人人网</a>";
+	//str+="<a class='btn' target='_blank' href='http://www.kaixin001.com/repaste/share.php?rtitle="+title+"&rurl=="+url+"&rcontent="+content+"'>开心网</a>";
+	//str+="<a class='btn' target='_blank' href='http://www.douban.com/recommend/?title="+title+"&url="+url+"&rcontent="+content+"'>豆瓣</a>";
+	str+="</div>";
+	return str;
+}
 function tzcc()
 {
 	this.location="#top";
@@ -80,14 +94,14 @@ function shengcheng(neirong)
 	else
 	{
 		image="https://chart.googleapis.com/chart?cht=qr&chs="+imagewidth+"x"+imageheight+"&choe="+imagebm+"&chld="+imagerc+"|"+imagemargin+"&chl="+neirong;
-		document.getElementById('showqr').innerHTML="<img title='您生成的二维码' alt='图片加载失败，请重新生成' src='"+image+"' />";
+		document.getElementById('showqr').innerHTML="<img style='margin-bottom:20px;' title='您的二维码' alt='图片加载失败，请重新生成' src='"+image+"' />";
 		var img = new Image();
 		img.src = image;
 		img.onload = function()
 		{
 			hideall();
 			document.getElementById('showqr').style.display="block";
-			document.getElementById('notice').innerHTML="二维码生成成功！&nbsp;<a class='btn' href='"+image+"' target='_blank' title='立即下载'>立即下载</a>";
+			document.getElementById('notice').innerHTML="<p>二维码生成成功！&nbsp;<a class='btn' href='"+image+"' target='_blank' title='立即下载'>立即下载</a>&nbsp</p><p>"+share("我的二维码，用QREncoder制作的！QREncoder可以将文本、网址、电话、短信、邮件甚至名片等信息快速转换为二维条形码。","我的二维码，用QREncoder制作的！QREncoder可以将文本、网址、电话、短信、邮件甚至名片等信息快速转换为二维条形码。","http://qrencoder.sinaapp.com",escape(image))+"</p>";
 			document.getElementById('notice').style.display="block"; 
 		};
 		img.onerror = function()
@@ -160,13 +174,8 @@ function shengchengcard()
 <input class="search-query" type="submit" value="搜索" title="搜索">
 </form>
 </li>
-<li style="margin-top:10px; margin-left:20px;">
-<!-- JiaThis Button BEGIN -->
-<div id="ckepop">
-<a href="http://www.jiathis.com/share?uid=895708" class="jiathis jiathis_txt" target="_blank"><img src="http://v3.jiathis.com/code/images/btn/v1/jiathis1.gif" border="0" /></a>
-<a class="jiathis_counter_style_margin:3px 0 0 2px"></a>
-</div>
-<!-- JiaThis Button END -->
+<li style="margin-top:8px; margin-left:20px;">
+<a class="bshareDiv" href="http://www.bshare.cn/share"></a>
 </li>
 </ul>
 </div>
@@ -291,8 +300,12 @@ CopyRight &copy; <script language="JavaScript" type="text/javascript">document.w
 </div>
 
 <div style="display:none;">
-<script type="text/javascript">var jiathis_config = {data_track_clickback:true};</script>
-<script type="text/javascript" src="http://v3.jiathis.com/code/jia.js?uid=895708" charset="utf-8"></script>
+<script type="text/javascript" charset="utf-8" src="http://static.bshare.cn/b/buttonLite.js#uuid=e8728fd5-90c4-41dc-8fa3-61033b68648a&amp;style=1"></script>
+<script type="text/javascript">
+bShare.addEntry({
+	pic: "https://chart.googleapis.com/chart?cht=qr&chs=547x547&choe=UTF-8&chld=L|0&chl=http://qrencoder.sinaapp.com"
+});
+</script>
 <script type="text/javascript" src="http://tajs.qq.com/stats?sId=9680758" charset="UTF-8"></script>
 <script type="text/javascript">
 var _bdhmProtocol = (("https:" == document.location.protocol) ? " https://" : " http://");
